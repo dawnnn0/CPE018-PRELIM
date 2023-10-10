@@ -24,23 +24,6 @@ class Cameo(object):
             #self._findEdgesFilter.apply(frame, frame)
             #filters.ContourFilter(frame)
             #filters.CannyEdgeDetection()
-            
-            # Apply Canny edge detection
-            edges = cv2.Canny(frame, 50, 150)
-            
-            # Find circles using Hough Circle Transform
-            circles = cv2.HoughCircles(edges, cv2.HOUGH_GRADIENT, dp=1, minDist=50, param1=50, param2=60, minRadius=5, maxRadius=100)
-            
-            if circles is not None:
-                circles = circles.astype(int)
-                for circle in circles[0, :]:
-                    center = (circle[0], circle[1])
-                    radius = circle[2]
-                    # Draw the outer circle
-                    cv2.circle(frame, center, radius, (0, 255, 0), 2)
-                    # Draw the center of the circle
-                    cv2.circle(frame, center, 2, (0, 0, 255), 3)
-
             # Display the frame with circle detection
             self._windowManager.show(frame)
             
